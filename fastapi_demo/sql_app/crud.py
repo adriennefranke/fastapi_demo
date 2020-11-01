@@ -24,13 +24,13 @@ def create_user(db: Session, user: schemas.UserCreate):
     return db_user
 
 
-def get_ideas(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Idea).offset(skip).limit(limit).all()
+def get_items(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.item).offset(skip).limit(limit).all()
 
 
-def create_user_idea(db: Session, idea: schemas.IdeaCreate, user_id: int):
-    db_idea = models.Item(**idea.dict(), user_id=user_id)
-    db.add(db_idea)
+def create_user_item(db: Session, item: schemas.itemCreate, user_id: int):
+    db_item = models.Item(**item.dict(), user_id=user_id)
+    db.add(db_item)
     db.commit()
-    db.refresh(db_idea)
-    return db_idea
+    db.refresh(db_item)
+    return db_item

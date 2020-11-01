@@ -3,16 +3,16 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
-class IdeaBase(BaseModel):
+class itemBase(BaseModel):
     title: str
     description: Optional[str] = None
 
 
-class IdeaCreate(IdeaBase):
+class itemCreate(itemBase):
     pass
 
 
-class Idea(IdeaBase):
+class item(itemBase):
     id: int
     user_id: int
 
@@ -31,7 +31,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
-    ideas: List[Idea] = []
+    items: List[item] = []
 
     class Config:
         orm_mode = True
